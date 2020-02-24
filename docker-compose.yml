@@ -1,0 +1,70 @@
+version: "3"
+
+networks:
+  grafana:
+
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
+  app_data: {}
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.16.0
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+    ports:
+      - 9090:9090
+    networks:
+      - grafana
+
+  # TODO: Find a way to collect from the host, that works for both Linux and macOS.
+  node-exporter:
+    image: prom/node-exporter:v0.18.1
+    ports:
+      - 9100:9100
+    networks:
+      - grafana
+
+  loki:
+    image: grafana/loki:latest
+    ports:
+      - 3100:3100
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - grafana
+
+  promtail:
+    image: grafana/promtail:latest
+    volumes:
+      - app_data:/var/log
+    command: -config.file=/etc/promtail/docker-config.yaml
+    networks:
+      - grafana
+
+  grafana:
+    image: grafana/grafana:6.6.2
+    ports:
+      - 3000:3000
+    networks:
+      - grafana
+
+  app:
+    build: ./app
+    ports:
+      - 8081:80
+    volumes:
+      - app_data:/var/log
+    networks:
+      - grafana
+
+  db:
+    image: grafana/tns-db:latest
+    ports:
+      - 8082:80
+    networks:
+      - grafana
