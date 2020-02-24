@@ -16,7 +16,7 @@ If you're running Docker for Desktop for macOS or Windows, Docker Compose is alr
 - Clone this repository:
 
 ```
-git clone https://github.com/marcusolsson/monitoring-workshop.git
+git clone https://github.com/grafana/monitoring-intro-workshop.git
 ```
 
 - Go to the directory where you cloned this repository:
@@ -154,7 +154,7 @@ Instead of manually annotating your dashboards, you can tell Grafana to get anno
 - Select **Dashboard settings** from the top of the dashboard view.
 - Click **Annotations**, then **New**.
 - In the **Name** box, type "Errors".
-- Select "Loki" from the **Data source" drop down.
+- Select "Loki" from the **Data source** drop down.
 - In the **Query** box, type a LogQL query:
 
 ```
