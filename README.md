@@ -164,3 +164,28 @@ Instead of manually annotating your dashboards, you can tell Grafana to get anno
 - Click **Add** and go back to your dashboard.
 
 The log lines returned by your query are now displayed as annotations in the graph.
+
+## Effective monitoring
+
+### RED
+
+RED, or Rate, Errors, and Duration, is a method for monitoring services. Let's create a RED dashboard for our sample application.
+
+- Create a new dashboard.
+- Add a Graph panel for visualizing _Rate_, with the following query:
+
+```
+sum(irate(tns_request_duration_seconds_count[5m]))
+```
+
+- Add another Graph panel for _Errors_:
+
+```
+sum(irate(tns_request_duration_seconds_count{status_code!~"2.."}[5m]))
+```
+
+- Add a third Graph panel to display _Duration_:
+
+```
+histogram_quantile(0.99, sum(irate(tns_request_duration_seconds_bucket[5m])) by(le))
+```
