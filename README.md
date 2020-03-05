@@ -22,7 +22,7 @@ git clone https://github.com/grafana/monitoring-intro-workshop.git
 - Go to the directory where you cloned this repository:
 
 ```
-cd monitoring-workshop
+cd monitoring-intro-workshop
 ```
 
 - Start the sample application:
@@ -30,6 +30,16 @@ cd monitoring-workshop
 ```
 docker-compose up -d
 ```
+
+This might take a few minutes, depending on your internet connection.
+
+- Ensure all services are up-and-running:
+
+```
+docker-compose up -d
+```
+
+All services should say `Up`.
 
 - Browse to [localhost:8081](http://localhost:8081) to start using the sample application.
 
@@ -71,7 +81,7 @@ tns_request_duration_seconds_count
 
 - In the top right corner, click the drop down on the **Run Query** button, and select "5s" to have Grafana run your query every 5 seconds.
 
-PromQL is a powerful query language that lets you apply transformations to your queries. Try the `rate` and `sum` functions:
+PromQL is a powerful query language that lets you apply transformations to your queries. Since `tns_request_duration_seconds_count` is a _counter_, it will only increase. For something more interesting, try the `rate` and `sum` functions:
 
 - Add the `rate` function to your query to visualize the rate of requests per second:
 
@@ -84,6 +94,16 @@ irate(tns_request_duration_seconds_count[5m])
 ```
 sum(irate(tns_request_duration_seconds_count[5m])) by(route)
 ```
+
+Go back to the sample application and generate some traffic by adding new links, voting, or just refresh the browser.
+
+_Note:_ If you don't want to manually refresh the browser, [hey](https://github.com/rakyll/hey) is a great tool to generate traffic.
+
+```
+hey -m GET http://localhost:8081
+hey -m POST -H "Content-Type: application/x-www-form-urlencoded" -d "title=Example&url=http://example.com" http://localhost:8081/post
+```
+
 
 ## Visualizing logs
 
@@ -100,6 +120,8 @@ sum(irate(tns_request_duration_seconds_count[5m])) by(route)
 ### Explore logs
 
 - In the side bar, click **Explore**.
+
+- In the dropdown at the top, select the "Loki" data source.
 
 - In the **Query** box, type the following, and press Enter to display all logs within the log file of the sample application:
 
@@ -149,10 +171,12 @@ Whenever things go bad, it can be invaluable to understand the context in which 
 - To manually add an annotation, left-click anywhere in your graph, and click **Add annotation**.
 - Describe what you did, and optionally add tags for more context.
 
+Let your team know that you did some testing for a while, by clicking and dragging an interval, while pressing Ctrl (or Cmd on macOS).
+
 Instead of manually annotating your dashboards, you can tell Grafana to get annotations from a data source.
 
 - Select **Dashboard settings** from the top of the dashboard view.
-- Click **Annotations**, then **New**.
+- Click **Annotations**, then **New Annotation Query**.
 - In the **Name** box, type "Errors".
 - Select "Loki" from the **Data source** drop down.
 - In the **Query** box, type a LogQL query:
@@ -171,12 +195,9 @@ The log lines returned by your query are now displayed as annotations in the gra
 
 RED, or Rate, Errors, and Duration, is a method for monitoring services. Let's create a RED dashboard for our sample application.
 
-- Create a new dashboard.
-- Add a Graph panel for visualizing _Rate_, with the following query:
+In the last exercise, you created a panel to visualize the _Rate_ of requests, or traffic.
 
-```
-sum(irate(tns_request_duration_seconds_count[5m]))
-```
+Next, we'll add one for _Errors_, and _Duration_.
 
 - Add another Graph panel for _Errors_:
 
@@ -189,3 +210,14 @@ sum(irate(tns_request_duration_seconds_count{status_code!~"2.."}[5m]))
 ```
 histogram_quantile(0.99, sum(irate(tns_request_duration_seconds_bucket[5m])) by(le))
 ```
+
+To be able to troubleshoot any errors, let's add a logs panel to our dashboard:
+
+- Create another panel with a Logs visualization.
+- In the **Query** settings, select the "Loki" data source, and enter the query:
+
+```
+{filename="/var/log/tns-app.log"}
+```
+
+- Go back to you dashboard. With the current dashboard, we can quickly see when an error occurred, and what may have caused it.
