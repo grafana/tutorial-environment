@@ -95,7 +95,7 @@ sum(irate(tns_request_duration_seconds_count[5m])) by(route)
 
 Go back to the sample application and generate some traffic by adding new links, voting, or just refresh the browser.
 
-_Note:_ If you don't want to manually refresh the browser, [hey](https://github.com/rakyll/hey) is a great tool to generate traffic.
+> If you don't want to manually refresh the browser, [hey](https://github.com/rakyll/hey) is a great tool to generate traffic.
 
 ```
 hey -m GET http://localhost:8081
