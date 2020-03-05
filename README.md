@@ -43,15 +43,13 @@ All services should say `Up`.
 
 - Browse to [localhost:8081](http://localhost:8081) to start using the sample application.
 
-## Time series with Prometheus
+## Metrics and time series
 
 The sample application exposes its metrics under the [/metrics](http://localhost:8081/metrics) endpoint. Prometheus uses this endpoint to collect measurements.
 
 - Browse to [http://localhost:8081/metrics](http://localhost:8081/metrics) to see all the metrics exposed by the sample application.
 
 - Refresh the page a couple of times to take new measurements.
-
-## Visualizing time series
 
 - Browse to [Grafana](http://localhost:3000), and log in using the default credentials:
   - Username: admin
@@ -105,7 +103,7 @@ hey -m POST -H "Content-Type: application/x-www-form-urlencoded" -d "title=Examp
 ```
 
 
-## Visualizing logs
+## Logs
 
 ### Add a Loki data source
 
