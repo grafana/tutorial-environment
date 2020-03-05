@@ -219,3 +219,23 @@ To be able to troubleshoot any errors, let's add a logs panel to our dashboard:
 ```
 
 - Go back to you dashboard. With the current dashboard, we can quickly see when an error occurred, and what may have caused it.
+
+## Alerting
+
+For this exercise, you'll be sending alerts using Webhooks. To do that, we first need to set up a request bin:
+
+- Browse to [pipedream](https://requestbin.com)
+- Unselect **Private (requires log in)**, and click "Create Request Bin".
+- You request bin is now waiting for the first request.
+- Copy the endpoint URL.
+
+Next, you'll configure a _notification channel_.
+
+- In the side bar, click **Alerting** -> **Notification channels**.
+- Click **Add channel**.
+- In the **Name** box, type RequestBin.
+- In the **Type** box, select "webhook".
+- In the **Url** box, paste the endpoint to your request bin.
+- Click **Send Test** to send a test alert to your request bin.
+
+
