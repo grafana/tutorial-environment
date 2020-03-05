@@ -36,7 +36,7 @@ This might take a few minutes, depending on your internet connection.
 - Ensure all services are up-and-running:
 
 ```
-docker-compose up -d
+docker-compose ps
 ```
 
 All services should say `Up`.
