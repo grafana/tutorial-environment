@@ -98,8 +98,8 @@ Go back to the sample application and generate some traffic by adding new links,
 > If you don't want to manually refresh the browser, [hey](https://github.com/rakyll/hey) is a great tool to generate traffic.
 
 ```
-hey -m GET http://localhost:8081
-hey -m POST -H "Content-Type: application/x-www-form-urlencoded" -d "title=Example&url=http://example.com" http://localhost:8081/post
+hey -n 10 -c 10 -m GET http://localhost:8081
+hey -n 10 -c 10 -m POST -H "Content-Type: application/x-www-form-urlencoded" -d "title=Example&url=http://example.com" http://localhost:8081/post
 ```
 
 
