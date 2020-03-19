@@ -22,14 +22,6 @@ services:
     networks:
       - grafana
 
-  # TODO: Find a way to collect from the host, that works for both Linux and macOS.
-  node-exporter:
-    image: prom/node-exporter:v0.18.1
-    ports:
-      - 9100:9100
-    networks:
-      - grafana
-
   loki:
     image: grafana/loki:latest
     ports:
@@ -49,7 +41,7 @@ services:
   grafana:
     image: grafana/grafana:6.6.2
     ports:
-      - 3000:3000
+      - 3001:3000
     networks:
       - grafana
 
