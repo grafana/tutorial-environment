@@ -23,7 +23,7 @@ services:
       - grafana
 
   loki:
-    image: grafana/loki:latest
+    image: grafana/loki:1.4.1
     ports:
       - 3100:3100
     command: -config.file=/etc/loki/local-config.yaml
@@ -31,7 +31,7 @@ services:
       - grafana
 
   promtail:
-    image: grafana/promtail:latest
+    image: grafana/promtail:v1.3.0
     volumes:
       - app_data:/var/log
     command: -config.file=/etc/promtail/docker-config.yaml
