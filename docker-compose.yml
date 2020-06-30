@@ -3,6 +3,9 @@ version: "3"
 networks:
   grafana:
 
+volumes:
+  app_data: {}
+
 services:
   prometheus:
     image: prom/prometheus:v2.16.0
@@ -26,6 +29,8 @@ services:
 
   promtail:
     image: grafana/promtail:v1.3.0
+    volumes:
+      - app_data:/var/log
     command: -config.file=/etc/promtail/docker-config.yaml
     networks:
       - grafana
@@ -41,6 +46,8 @@ services:
     build: ./app
     ports:
       - 8081:80
+    volumes:
+      - app_data:/var/log
     networks:
       - grafana
 
