@@ -36,7 +36,7 @@ services:
       - grafana
 
   grafana:
-    image: grafana/grafana:7.0.4
+    image: grafana/grafana:7.1.5
     ports:
       - 3000:3000
     networks:
