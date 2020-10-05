@@ -8,7 +8,7 @@ volumes:
 
 services:
   prometheus:
-    image: prom/prometheus:v2.16.0
+    image: prom/prometheus:v2.21.0
     volumes:
       - ./prometheus/:/etc/prometheus/
     command:
@@ -20,7 +20,7 @@ services:
       - grafana
 
   loki:
-    image: grafana/loki:1.4.1
+    image: grafana/loki:1.6.1
     ports:
       - 3100:3100
     command: -config.file=/etc/loki/local-config.yaml
@@ -28,15 +28,14 @@ services:
       - grafana
 
   promtail:
-    image: grafana/promtail:v1.3.0
+    image: grafana/promtail:1.6.1
     volumes:
       - app_data:/var/log
-    command: -config.file=/etc/promtail/docker-config.yaml
     networks:
       - grafana
 
   grafana:
-    image: grafana/grafana:7.1.5
+    image: grafana/grafana:7.2.0
     ports:
       - 3000:3000
     networks:
