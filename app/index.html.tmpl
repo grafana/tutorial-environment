@@ -41,7 +41,7 @@
                      <tr>
                         <td colspan="2"></td>
                         <td class="subtext">
-                          <span class="score" id="score_{{ .ID }}">{{ .Points }} points</span>
+                          <span class="score" id="score_{{ .ID }}">{{ .Points }}{{ if eq .Points 1 }} point{{ else }} points{{ end }}</span>
                         </td>
                      </tr>
                      <tr class="spacer" style="height:5px"></tr>
