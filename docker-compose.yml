@@ -40,6 +40,9 @@ services:
       - 3000:3000
     networks:
       - grafana
+    environment:
+      - "GF_DEFAULT_APP_MODE=development"
+      - "GT_LOG_LEVEL=debug"
 
   app:
     build: ./app
