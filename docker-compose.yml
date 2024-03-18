@@ -35,7 +35,7 @@ services:
       - grafana
 
   grafana:
-    image: grafana/grafana:10.3.0
+    image: grafana/grafana:10.4.0
     ports:
       - 3000:3000
     networks:
@@ -46,6 +46,7 @@ services:
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_BASIC_ENABLED=false
+      - GF_FEATURE_TOGGLES_ENABLE=alertingSimplifiedRouting
     volumes:
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
 
