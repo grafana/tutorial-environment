@@ -15,13 +15,13 @@
     },
     {
       "type": "datasource",
-      "id": "loki",
+      "id": "Loki",
       "name": "Loki",
       "version": "1.0.0"
     },
     {
       "type": "datasource",
-      "id": "prometheus",
+      "id": "Prometheus",
       "name": "Prometheus",
       "version": "1.0.0"
     },
@@ -48,8 +48,8 @@
       },
       {
         "datasource": {
-          "type": "loki",
-          "uid": "loki"
+          "type": "Loki",
+          "uid": "Loki"
         },
         "enable": true,
         "expr": "{filename=\"/var/log/tns-app.log\"} |= \"error\"",
@@ -68,8 +68,8 @@
   "panels": [
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
+        "type": "Prometheus",
+        "uid": "Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -148,8 +148,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "editorMode": "code",
           "expr": "rate(tns_request_duration_seconds_count[5m])",
@@ -164,8 +164,8 @@
     },
     {
       "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
+        "type": "Prometheus",
+        "uid": "Prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -244,8 +244,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "editorMode": "code",
           "expr": "sum(rate(tns_request_duration_seconds_count[5m])) by(route)",
@@ -260,8 +260,8 @@
     },
     {
       "datasource": {
-        "type": "loki",
-        "uid": "loki"
+        "type": "Loki",
+        "uid": "Loki"
       },
       "gridPos": {
         "h": 9,
@@ -283,8 +283,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "loki",
-            "uid": "loki"
+            "type": "Loki",
+            "uid": "Loki"
           },
           "editorMode": "code",
           "expr": "{filename=\"/var/log/tns-app.log\"}",
@@ -299,8 +299,8 @@
     },
     {
       "datasource": {
-        "type": "loki",
-        "uid": "loki"
+        "type": "Loki",
+        "uid": "Loki"
       },
       "gridPos": {
         "h": 9,
@@ -322,8 +322,8 @@
       "targets": [
         {
           "datasource": {
-            "type": "loki",
-            "uid": "loki"
+            "type": "Loki",
+            "uid": "Loki"
           },
           "editorMode": "code",
           "expr": "{filename=\"/var/log/tns-app.log\"} |= \"error\"",
