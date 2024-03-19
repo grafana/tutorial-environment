@@ -35,7 +35,7 @@ services:
       - grafana
 
   grafana:
-    image: grafana/grafana:10.3.0
+    image: grafana/grafana:latest
     ports:
       - 3000:3000
     networks:
@@ -48,6 +48,8 @@ services:
       - GF_AUTH_BASIC_ENABLED=false
     volumes:
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/provisioning/alerting:/etc/grafana/provisioning/alerting
 
   app:
     build: ./app
