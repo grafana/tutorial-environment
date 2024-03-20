@@ -49,8 +49,6 @@ services:
       - GF_FEATURE_TOGGLES_ENABLE=alertingSimplifiedRouting
     volumes:
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
-      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
-      - ./grafana/provisioning/alerting:/etc/grafana/provisioning/alerting
 
   app:
     build: ./app

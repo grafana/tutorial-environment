@@ -1,7 +1,6 @@
-# Sample application for tutorials (KillerCoda)
+# Sample application for tutorials
 
 This repository contains the environment for completing the tutorials at [grafana.com/tutorials](https://grafana.com/tutorials).
-**Note:** *This version of the tutorial is completed and used for deployment with our KillerCoda Interactive Training*
 
 ## Prequisites
 
