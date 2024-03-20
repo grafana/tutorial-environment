@@ -1,0 +1,19 @@
+apiVersion: 1
+
+providers:
+  - name: 'default'
+    orgId: 1
+    folder: '' 
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /etc/grafana/provisioning/dashboards 
+
+dashboards:
+  - name: 'Tutorial Dashboard (Completed)'
+    type: file
+    orgId: 1
+    disableDeletion: false
+    editable: true
+    file: dashboard.json 
