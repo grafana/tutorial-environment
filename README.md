@@ -35,3 +35,12 @@ To start the sample application and the supporting services:
 ```
 docker-compose up -d
 ```
+
+## Raspberry Pi Support
+
+To start the sample application and the supporting services on a Raspberry Pi:
+
+```
+DOCKER_DEFAULT_PLATFORM=linux/arm64 docker-compose build
+docker-compose up -d
+```
