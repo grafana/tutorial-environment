@@ -1,6 +1,6 @@
 
 # Build the Go app
-FROM golang:1.19 AS build
+FROM --platform=$BUILDPLATFORM golang:1.19
 WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
