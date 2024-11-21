@@ -9,3 +9,7 @@ datasources:
     basicAuth: false
     isDefault: true
     editable: true
+  - name: TestData
+    type: testdata
+    access: proxy
+    orgId: 1
