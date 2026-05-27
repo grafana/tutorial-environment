@@ -28,7 +28,7 @@ services:
       - grafana
 
   promtail:
-    image: grafana/promtail:2.0.0
+    image: grafana/promtail:2.9.17@sha256:b28495fdab552b183428c5b5cebbf258231fc5f00be7724be2bc091ad21ac390
     volumes:
       - app_data:/var/log
     networks:
