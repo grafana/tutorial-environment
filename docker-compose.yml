@@ -8,7 +8,7 @@ volumes:
 
 services:
   prometheus:
-    image: prom/prometheus:v2.49.0
+    image: prom/prometheus:v2.49.0@sha256:682a8500cb481ef780a4d60f6f1b273aae552063de02326f9f4645e395a18efc
     volumes:
       - ./prometheus/:/etc/prometheus/
     command:
@@ -20,7 +20,7 @@ services:
       - grafana
 
   loki:
-    image: grafana/loki:2.9.0
+    image: grafana/loki:2.9.0@sha256:b025a0220f390baaab01578aea2fe0ba677584d9f248c3fe5af15f84dd1de60d
     ports:
       - 3100:3100
     command: -config.file=/etc/loki/local-config.yaml
@@ -28,14 +28,14 @@ services:
       - grafana
 
   promtail:
-    image: grafana/promtail:2.0.0
+    image: grafana/promtail:2.0.0@sha256:5fd12edcc6947fdb2c62bf95af6293e6828a7a376ecff04cce61797ef169fa6c
     volumes:
       - app_data:/var/log
     networks:
       - grafana
 
   grafana:
-    image: grafana/grafana:12.0.1
+    image: grafana/grafana:12.0.1@sha256:06dc8d60e184705e5dc00e051a6d92342a44010d7d5e538d0a36339e85abb9b7
     ports:
       - 3000:3000
     networks:
@@ -59,7 +59,7 @@ services:
       - grafana
 
   db:
-    image: grafana/tns-db:latest
+    image: grafana/tns-db:latest@sha256:18f8a9a083e6cf968e3b3c0842fd1d4c087873fac8c2531d0445e843bf3f10ad
     ports:
       - 8082:80
     networks:
