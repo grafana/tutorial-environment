@@ -8,7 +8,7 @@ volumes:
 
 services:
   prometheus:
-    image: prom/prometheus:v2.49.0
+    image: prom/prometheus:v2.49.0@sha256:682a8500cb481ef780a4d60f6f1b273aae552063de02326f9f4645e395a18efc
     volumes:
       - ./prometheus/:/etc/prometheus/
     command:
@@ -35,7 +35,7 @@ services:
       - grafana
 
   grafana:
-    image: grafana/grafana:12.0.1
+    image: grafana/grafana:12.0.1@sha256:06dc8d60e184705e5dc00e051a6d92342a44010d7d5e538d0a36339e85abb9b7
     ports:
       - 3000:3000
     networks:
@@ -59,7 +59,7 @@ services:
       - grafana
 
   db:
-    image: grafana/tns-db:latest
+    image: grafana/tns-db:latest@sha256:18f8a9a083e6cf968e3b3c0842fd1d4c087873fac8c2531d0445e843bf3f10ad
     ports:
       - 8082:80
     networks:
