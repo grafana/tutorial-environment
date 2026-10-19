@@ -1,0 +1,18 @@
+local.file_match "web_requests" {
+  path_targets = [{
+    __path__ = "/var/log/web_requests.log",
+    filename  = "/var/log/web_requests.log",
+    job       = "varlogs",
+  }]
+}
+
+loki.source.file "web_requests" {
+  targets    = local.file_match.web_requests.targets
+  forward_to = [loki.write.default.receiver]
+}
+
+loki.write "default" {
+  endpoint {
+    url = "http://loki:3100/loki/api/v1/push"
+  }
+}
