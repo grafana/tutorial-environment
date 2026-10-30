@@ -35,7 +35,7 @@ services:
       - grafana
 
   grafana:
-    image: grafana/grafana:12.0.1
+    image: grafana/grafana:12.4.14@sha256:ae509d9ae8c1021ca32ec370a9ca975d40165eda9fccd1e1102d317ff8787cd7
     ports:
       - 3000:3000
     networks:
