@@ -20,7 +20,7 @@ services:
       - grafana
 
   loki:
-    image: grafana/loki:2.9.0
+    image: grafana/loki:3.7.10@sha256:b43c257ccfc925d4a50b8717cac61a3b51df8c48d01847936057e5c4075a24a7
     ports:
       - 3100:3100
     command: -config.file=/etc/loki/local-config.yaml
